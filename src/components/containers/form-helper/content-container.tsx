@@ -1,8 +1,18 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const ContentContainer = styled.div`
+type ContentContainerProps = {
+  $leftSpace?: number;
+};
+
+const ContentContainer = styled.div<ContentContainerProps>`
   width: 310px;
   max-width: 100%;
+
+  ${(props) =>
+    props?.$leftSpace &&
+    css`
+      margin-left: ${props?.$leftSpace + "px"};
+    `}
 `;
 
 export default ContentContainer;

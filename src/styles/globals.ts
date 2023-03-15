@@ -24,6 +24,8 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
   }
   
+  select,
+  option,
   textarea,
   input,
   button{

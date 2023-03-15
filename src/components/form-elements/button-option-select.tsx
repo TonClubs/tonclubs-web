@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { StepFormikHelpersType } from "../form-steps/create/step.type";
 
@@ -35,7 +35,30 @@ const ButtonOptionSelectStyled = styled.div`
   }
 `;
 
-type TextInputProps = {
+const getIndexFromValue = ({
+  button_options,
+  value,
+}: {
+  value: any;
+  button_options?: {
+    value: string | boolean | number;
+    label: string;
+  }[];
+}) => {
+  if (!button_options) {
+    return -1;
+  }
+
+  for (let i = 0; i < button_options?.length; i++) {
+    if (button_options[i].value === value) {
+      return i;
+    }
+  }
+
+  return -1;
+};
+
+type ButtonOptionSelectProps = {
   name: string;
   default_active_index: number;
   button_options?: {
@@ -45,12 +68,16 @@ type TextInputProps = {
   formikHelpers: StepFormikHelpersType;
 };
 
-const ButtonOptionSelect = (props: TextInputProps) => {
+const ButtonOptionSelect = (props: ButtonOptionSelectProps) => {
   const [field, meta] = useField(props);
 
   const { button_options, formikHelpers, name, default_active_index } = props;
 
-  const [activeIndex, setActiveIndex] = useState(default_active_index);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    setActiveIndex(getIndexFromValue({ button_options, value: field.value }));
+  }, [button_options, field.value]);
 
   const handleButtonClick = (
     value: string | boolean | number,

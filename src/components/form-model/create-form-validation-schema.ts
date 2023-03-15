@@ -11,31 +11,23 @@ const {
     limit_max_supply,
     monthly_membership_fee,
     set_monthly_membership_fee,
+    club_website,
+    club_category,
   },
 } = createFormModel;
 
 const createFormValidationSchema = [
   yup.object().shape({
-    [membership_name.name]: yup
-      .string()
-      .required(membership_name.label + " is required"),
-    [club_description.name]: yup
-      .string()
-      .required(club_description.label + " is required"),
-    [number_nft_amount.name]: yup
-      .number()
-      .required(number_nft_amount.label + " is required"),
-    [minting_price.name]: yup
-      .number()
-      .required(minting_price.label + " is required"),
-    [secondary_sale_fee.name]: yup
-      .number()
-      .required(secondary_sale_fee.label + " is required")
-      .max(100)
-      .min(0),
+    [membership_name.name]: yup.string(),
+    [club_description.name]: yup.string(),
+    [number_nft_amount.name]: yup.number(),
+    [minting_price.name]: yup.number(),
+    [secondary_sale_fee.name]: yup.number().max(100).min(0),
     [limit_max_supply.name]: yup.boolean().required(),
     [monthly_membership_fee.name]: yup.mixed().required(),
     [set_monthly_membership_fee.name]: yup.boolean().required(),
+    [club_website.name]: yup.string(),
+    [club_category.name]: yup.string(),
   }),
 ];
 

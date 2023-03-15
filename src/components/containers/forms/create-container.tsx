@@ -1,6 +1,7 @@
 import Button from "@/components/form-elements/button";
 import { StepFormikHelpersType } from "@/components/form-steps/create/step.type";
 import Step2 from "@/components/form-steps/create/step2";
+import Step3 from "@/components/form-steps/create/step3";
 import { Form, Formik, FormikHelpers, FormikValues } from "formik";
 import { useState, memo } from "react";
 import styled from "styled-components";
@@ -11,7 +12,7 @@ import createFormValidationSchema from "../../form-model/create-form-validation-
 import Step1 from "../../form-steps/create/step1";
 
 const CreateContainerStyled = styled.div`
-  width: 1110px;
+  width: 1011px;
   max-width: 100%;
   margin: auto;
   background: #1f1e2b;
@@ -29,9 +30,9 @@ const CreateContainerStyled = styled.div`
   }
 
   .content {
-    padding: 0px 40px;
+    padding: 0px 34px 0px 40px;
     display: flex;
-    gap: 70px;
+    gap: 60px;
   }
 
   form {
@@ -45,6 +46,7 @@ const CreateContainerStyled = styled.div`
     justify-content: flex-end;
     margin-right: 22px;
     gap: 16px;
+    padding-top: 24px;
   }
 `;
 
@@ -77,8 +79,10 @@ const renderStepContent = ({
       return <Step1 formikHelpers={formikHelpers} formField={formField} />;
     case 1:
       return <Step2 formikHelpers={formikHelpers} formField={formField} />;
+    case 2:
+      return <Step3 formikHelpers={formikHelpers} formField={formField} />;
     default:
-      return <div>Not Found</div>;
+      return <div>Created</div>;
   }
 };
 
@@ -119,22 +123,29 @@ const CreateContainer = () => {
                 <Form id={formId}>
                   <MemoizedStepContent
                     step={activeStep}
-                    formikHelpers={{ setFieldValue }}
+                    formikHelpers={{ setFieldValue, values }}
                   />
                 </Form>
               );
             }}
           </Formik>
         </div>
+
         <div className="bottom-actions">
-          {activeStep > 0 && (
-            <Button $mode="form-back" onClick={buttonBackClick}>
-              Back
-            </Button>
+          {3 > activeStep && (
+            <>
+              {activeStep > 0 && (
+                <Button $mode="form-back" onClick={buttonBackClick}>
+                  {activeStep === 2 ? "Turn back and edit" : "Back"}
+                </Button>
+              )}
+              <Button $mode="form-next" onClick={buttonNextClick}>
+                {activeStep === 2
+                  ? "🥳  Fantastic! Let’s Create It!"
+                  : "Next Step"}
+              </Button>
+            </>
           )}
-          <Button $mode="form-next" onClick={buttonNextClick}>
-            Next Step
-          </Button>
         </div>
       </CreateContainerStyled>
     </>

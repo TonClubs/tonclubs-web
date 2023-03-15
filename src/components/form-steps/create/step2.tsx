@@ -2,10 +2,14 @@ import ContentContainer from "@/components/containers/form-helper/content-contai
 import SplitContainer from "@/components/containers/form-helper/split-container";
 import ButtonOptionSelect from "@/components/form-elements/button-option-select";
 import NumberInput from "@/components/form-elements/number-input";
+import SelectOption from "@/components/form-elements/select-option";
+import TextInput from "@/components/form-elements/text-input";
 import styled from "styled-components";
 import { StepPropsType } from "./step.type";
 
 const MembershipStyled = styled.div`
+  padding-bottom: 15px;
+
   .membership-title {
     opacity: 1;
     color: rgba(114, 121, 160, 1);
@@ -32,11 +36,30 @@ const MembershipStyled = styled.div`
 `;
 
 const Step2 = ({ formField, formikHelpers }: StepPropsType) => {
-  const { monthly_membership_fee, set_monthly_membership_fee } = formField;
+  const {
+    monthly_membership_fee,
+    set_monthly_membership_fee,
+    club_description,
+    club_website,
+    club_category,
+  } = formField;
   return (
     <>
       <SplitContainer>
-        <ContentContainer></ContentContainer>
+        <ContentContainer>
+          <SelectOption name={club_category.name} label={club_category.label} />
+          <TextInput
+            label={club_description.label}
+            name={club_description.name}
+            placeholder={club_description?.placeholder}
+            textarea={club_description?.textarea}
+          />
+          <TextInput
+            label={club_website.label}
+            name={club_website.name}
+            placeholder={club_website?.placeholder}
+          />
+        </ContentContainer>
         <ContentContainer>
           <MembershipStyled>
             <div className="membership-title">

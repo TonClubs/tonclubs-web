@@ -10,13 +10,54 @@ const HeaderStyled = styled.div`
 
   .wrapper {
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .logo {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     img {
       object-fit: contain;
     }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding-left: 100px;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  .ton-connect-wrapper {
+    display: flex;
+    align-items: center;
+    width: 238px;
+    height: 55px;
+    border-radius: 27.5px;
+    border: 2px solid #fff;
+    padding-left: 14px;
+    cursor: pointer;
+    padding-right: 22px;
+  }
+
+  .ton-connect-text {
+    color: #fff;
+    font-size: 21px;
+    font-weight: 500;
+    user-select: none;
+  }
+
+  .ton-connect-image {
+    margin-right: 23px;
   }
 `;
 
@@ -32,6 +73,22 @@ const Header = () => {
             height={39}
           />
         </Link>
+        <div className="nav">
+          <Link href={"/"}>Create</Link>
+          <Link href={"/"}>Manage</Link>
+          <Link href={"/"}>Sell</Link>
+          <Link href={"/"}>Search</Link>
+        </div>
+        <div className="ton-connect-wrapper">
+          <Image
+            className="ton-connect-image"
+            src={"/purple-ton-icon.svg"}
+            width={32}
+            height={32}
+            alt="Ton icon"
+          />
+          <div className="ton-connect-text">Connected</div>
+        </div>
       </div>
     </HeaderStyled>
   );

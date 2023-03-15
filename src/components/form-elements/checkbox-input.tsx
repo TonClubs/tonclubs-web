@@ -19,7 +19,7 @@ const CheckboxInputStyled = styled.div`
     position: relative;
     width: 32px;
     height: 32px;
-    margin-right: 4px;
+    margin-right: 8px;
   }
 
   input[type="checkbox"] {
@@ -78,6 +78,7 @@ const CheckboxInput = (props: CheckboxInputProps) => {
           type="checkbox"
           {...inputProps}
           {...field}
+          checked={field?.value}
           id={name}
           placeholder={placeholder}
         />

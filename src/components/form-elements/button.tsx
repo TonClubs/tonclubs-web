@@ -16,20 +16,22 @@ const Button = styled.button<ButtonProps>`
   font-weight: 500;
   line-height: 16px;
   cursor: pointer;
+  transition: 0.3s ease background;
 
   ${(props) =>
     props?.$mode === "form-back" &&
     css`
       border: 2px solid rgba(132, 131, 156, 1);
-      background-color: rgba(50, 48, 66, 1);
+      background: rgba(50, 48, 66, 1);
     `}
 
   ${(props) =>
     props?.$mode === "form-next" &&
     css`
-      width: 186px;
+      padding-left: 40px;
+      padding-right: 40px;
       border: 2px solid rgba(135, 139, 250, 1);
-      background-color: rgba(75, 105, 255, 1);
+      background: rgba(75, 105, 255, 1);
     `}
 `;
 

@@ -19,10 +19,22 @@ const TextInputStyled = styled.div`
       rgba(26, 25, 35, 1) 100%
     );
 
-    color: rgba(114, 121, 160, 1);
+    color: #fff;
     font-size: 14px;
     font-weight: 400;
     outline: none;
+
+    &::placeholder {
+      color: #7279a0;
+      opacity: 0;
+    }
+
+    &:disabled {
+      background-image: 0;
+      background: #35354c;
+      color: #909ef2;
+      font-weight: 600;
+    }
   }
 
   textarea {
@@ -38,8 +50,9 @@ const TextInputStyled = styled.div`
 `;
 
 type TextInputProps = {
-  label: string;
   name: string;
+  customEndValue?: string;
+  label: string;
   textarea?: boolean;
   placeholder?: string;
   inputProps?: React.HTMLProps<HTMLInputElement>;
@@ -47,8 +60,15 @@ type TextInputProps = {
 };
 
 const TextInput = (props: TextInputProps) => {
-  const { label, name, placeholder, inputProps, textareaProps, textarea } =
-    props;
+  const {
+    label,
+    name,
+    placeholder,
+    inputProps,
+    textareaProps,
+    textarea,
+    customEndValue,
+  } = props;
 
   const [field, meta] = useField(props);
 
@@ -62,6 +82,7 @@ const TextInput = (props: TextInputProps) => {
           {...textareaProps}
           {...field}
           placeholder={placeholder}
+          {...(customEndValue ? { value: customEndValue } : {})}
         ></textarea>
       ) : (
         <input
@@ -70,6 +91,7 @@ const TextInput = (props: TextInputProps) => {
           {...inputProps}
           {...field}
           placeholder={placeholder}
+          {...(customEndValue ? { value: customEndValue } : {})}
         />
       )}
     </TextInputStyled>
