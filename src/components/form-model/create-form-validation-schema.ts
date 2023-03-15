@@ -8,6 +8,9 @@ const {
     number_nft_amount,
     minting_price,
     secondary_sale_fee,
+    limit_max_supply,
+    monthly_membership_fee,
+    set_monthly_membership_fee,
   },
 } = createFormModel;
 
@@ -30,6 +33,9 @@ const createFormValidationSchema = [
       .required(secondary_sale_fee.label + " is required")
       .max(100)
       .min(0),
+    [limit_max_supply.name]: yup.boolean().required(),
+    [monthly_membership_fee.name]: yup.mixed().required(),
+    [set_monthly_membership_fee.name]: yup.boolean().required(),
   }),
 ];
 

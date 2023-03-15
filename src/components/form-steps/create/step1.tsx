@@ -1,4 +1,5 @@
 import ContentContainer from "@/components/containers/form-helper/content-container";
+import CheckboxInput from "@/components/form-elements/checkbox-input";
 import NumberInput from "@/components/form-elements/number-input";
 import TextInput from "@/components/form-elements/text-input";
 import { StepPropsType } from "./step.type";
@@ -10,6 +11,7 @@ const Step1 = ({ formField }: StepPropsType) => {
     number_nft_amount,
     minting_price,
     secondary_sale_fee,
+    limit_max_supply,
   } = formField;
 
   console.log("re rendered");
@@ -31,21 +33,21 @@ const Step1 = ({ formField }: StepPropsType) => {
         <NumberInput
           label={number_nft_amount.label}
           name={number_nft_amount.name}
-          placeholder={number_nft_amount?.placeholder}
+        />
+        <CheckboxInput
+          label={limit_max_supply.label}
+          name={limit_max_supply.name}
         />
         <NumberInput
           label={minting_price.label}
           name={minting_price.name}
-          placeholder={minting_price?.placeholder}
           suffix={"TON"}
         />
         <NumberInput
           label={secondary_sale_fee.label}
           name={secondary_sale_fee.name}
-          placeholder={secondary_sale_fee?.placeholder}
           suffix={"%"}
         />
-        <button type="submit">Submit</button>
       </ContentContainer>
     </>
   );

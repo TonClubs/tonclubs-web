@@ -1,16 +1,24 @@
 import { useField } from "formik";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const NumberInputStyled = styled.div`
+const NumberInputStyled = styled.div<{ $label_on_top: boolean }>`
   margin-bottom: 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  ${(props) =>
+    props?.$label_on_top &&
+    css`
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    `}
+
   input {
     display: block;
-    width: 113px;
+    width: 125px;
     max-width: 100%;
     padding: 10px 25px 10px 11px;
     border: 0;
@@ -76,21 +84,31 @@ type NumberInputProps = {
   minNum?: number;
   inputProps?: React.HTMLProps<HTMLInputElement>;
   suffix?: string;
+  label_on_top?: boolean;
 };
 
 const NumberInput = (props: NumberInputProps) => {
-  const { label, name, placeholder, inputProps, suffix, maxNum, minNum } =
-    props;
+  const {
+    label,
+    name,
+    placeholder,
+    inputProps,
+    suffix,
+    maxNum,
+    minNum,
+    label_on_top,
+  } = props;
 
   const [field, meta] = useField(props);
 
   return (
-    <NumberInputStyled>
+    <NumberInputStyled $label_on_top={label_on_top || false}>
       <label htmlFor={name}>{label}</label>
       <div className={"input-con" + (suffix ? " suffix" : "")}>
         <input
           type="text"
           pattern="[0-9]*"
+          id={name}
           {...inputProps}
           {...field}
           onChange={(elm: React.ChangeEvent<HTMLInputElement>) => {

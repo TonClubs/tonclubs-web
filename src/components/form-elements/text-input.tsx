@@ -58,6 +58,7 @@ const TextInput = (props: TextInputProps) => {
       {textarea ? (
         <textarea
           rows={2}
+          id={name}
           {...textareaProps}
           {...field}
           placeholder={placeholder}
@@ -65,6 +66,7 @@ const TextInput = (props: TextInputProps) => {
       ) : (
         <input
           type="text"
+          id={name}
           {...inputProps}
           {...field}
           placeholder={placeholder}

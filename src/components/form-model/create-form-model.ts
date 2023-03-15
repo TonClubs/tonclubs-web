@@ -15,17 +15,27 @@ const createFormModel = {
     number_nft_amount: {
       name: "number_nft_amount",
       label: "Member NFT Amount",
-      placeholder: "",
     },
     minting_price: {
       name: "minting_price",
       label: "Minting Price",
-      placeholder: "",
     },
     secondary_sale_fee: {
       name: "secondary_sale_fee",
       label: "Secondary Sale Fee",
-      placeholder: "",
+    },
+    limit_max_supply: {
+      name: "limit_max_supply",
+      label: "Limit Max Supply",
+      type: "checkbox",
+    },
+    monthly_membership_fee: {
+      name: "monthly_membership_fee",
+      type: "button_select",
+    },
+    set_monthly_membership_fee: {
+      name: " ",
+      label: "Set Monthly Membership Fee",
     },
   },
 };

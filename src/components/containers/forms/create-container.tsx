@@ -1,4 +1,7 @@
-import { Form, Formik } from "formik";
+import Button from "@/components/form-elements/button";
+import { StepFormikHelpersType } from "@/components/form-steps/create/step.type";
+import Step2 from "@/components/form-steps/create/step2";
+import { Form, Formik, FormikHelpers, FormikValues } from "formik";
 import { useState, memo } from "react";
 import styled from "styled-components";
 import Steps from "../../container-parts/steps";
@@ -14,8 +17,7 @@ const CreateContainerStyled = styled.div`
   background: #1f1e2b;
   border: 1px solid rgba(109, 106, 142, 0.965226);
   border-radius: 8px;
-
-  padding-bottom: 60px;
+  padding-bottom: 27px;
 
   .title {
     font-size: 21px;
@@ -37,14 +39,44 @@ const CreateContainerStyled = styled.div`
     display: flex;
     justify-content: space-between;
   }
+
+  .bottom-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 22px;
+    gap: 16px;
+  }
 `;
 
 const { formField, formId } = createFormModel;
 
-const renderStepContent = ({ step }: { step: number }) => {
+const steps_content = [
+  {
+    name: "Step 1",
+    description: "Enter Membership NFT Fundamantals",
+  },
+  {
+    name: "Step 2",
+    description: "Manage Membership Features",
+  },
+  {
+    name: "Step 3",
+    description: "Create & Share Membership NFTs",
+  },
+];
+
+const renderStepContent = ({
+  step,
+  formikHelpers,
+}: {
+  step: number;
+  formikHelpers: StepFormikHelpersType;
+}) => {
   switch (step) {
     case 0:
-      return <Step1 formField={formField} />;
+      return <Step1 formikHelpers={formikHelpers} formField={formField} />;
+    case 1:
+      return <Step2 formikHelpers={formikHelpers} formField={formField} />;
     default:
       return <div>Not Found</div>;
   }
@@ -59,43 +91,50 @@ const CreateContainer = () => {
     console.log("values", values, "actions", actions);
   };
 
+  const buttonBackClick = () => {
+    if (activeStep > 0) {
+      setActiveStep(activeStep - 1);
+    }
+  };
+
+  const buttonNextClick = () => {
+    setActiveStep(activeStep + 1);
+  };
+
   return (
     <>
       <CreateContainerStyled>
         <div className="title">Create Your Telegram Membership NFT</div>
         <div className="content">
-          <Steps
-            steps={[
-              {
-                name: "Step 1",
-                description: "Enter Membership NFT Fundamantals",
-              },
-              {
-                name: "Step 2",
-                description: "Manage Membership Features",
-              },
-              {
-                name: "Step 3",
-                description: "Create & Share Membership NFTs",
-              },
-            ]}
-            active_step_index={activeStep}
-          />
+          <Steps steps={steps_content} active_step_index={activeStep} />
           <Formik
             initialValues={createFormInitialValues}
             validationSchema={createFormValidationSchema[activeStep]}
             onSubmit={handleFormSubmit}
             validateOnChange={false}
           >
-            {({ isSubmitting, errors }) => {
-              console.log("errors", errors);
+            {({ values, isSubmitting, errors, setFieldValue }) => {
+              console.log("values", values);
               return (
                 <Form id={formId}>
-                  <MemoizedStepContent step={activeStep} />
+                  <MemoizedStepContent
+                    step={activeStep}
+                    formikHelpers={{ setFieldValue }}
+                  />
                 </Form>
               );
             }}
           </Formik>
+        </div>
+        <div className="bottom-actions">
+          {activeStep > 0 && (
+            <Button $mode="form-back" onClick={buttonBackClick}>
+              Back
+            </Button>
+          )}
+          <Button $mode="form-next" onClick={buttonNextClick}>
+            Next Step
+          </Button>
         </div>
       </CreateContainerStyled>
     </>

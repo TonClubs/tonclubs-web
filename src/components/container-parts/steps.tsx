@@ -35,6 +35,7 @@ const StepsStyled = styled.div`
     position: absolute;
     left: 0;
     top: 0;
+    width: 0%;
     height: 100%;
     border-radius: 4px;
     background-color: rgba(75, 105, 255, 1);
@@ -69,8 +70,6 @@ const Steps = ({ steps, active_step_index }: StepsPropsType) => {
             : active_step_index >= index
             ? " full"
             : "";
-
-        console.log("1", active_step_index, index);
 
         return (
           <div className="step-item" key={"step-item_" + index}>
