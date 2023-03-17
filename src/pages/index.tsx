@@ -80,6 +80,14 @@ const LandingStyled = styled.div`
   }
 `;
 
+const AfterHackathonText = styled.div`
+  width: 1110px;
+  max-width: 100%;
+  margin: 90px auto 65px auto;
+  font-weight: 600;
+  text-decoration: underline;
+`;
+
 export default function Home() {
   return (
     <>
@@ -99,15 +107,30 @@ export default function Home() {
           <h2 className="subtitle purple">with TON Network</h2>
 
           <div className="buttons">
-            <a href="https://t.me/tonclubstestbot" target="_blank" rel="noreferrer" className="button outlined">
+            <a
+              href="https://t.me/tonclubstestbot"
+              target="_blank"
+              rel="noreferrer"
+              className="button outlined"
+            >
               Try On Telegram
             </a>
 
-            <a href="https://video.tonclubs.com" target="_blank" rel="noreferrer" className="button contained">
+            <a
+              href="https://video.tonclubs.com"
+              target="_blank"
+              rel="noreferrer"
+              className="button contained"
+            >
               Demo Video
             </a>
 
-            <a href="https://github.com/TonClubs" target="_blank" rel="noreferrer" className="github">
+            <a
+              href="https://github.com/TonClubs"
+              target="_blank"
+              rel="noreferrer"
+              className="github"
+            >
               <Image
                 src={"/images/github-icon.png"}
                 alt="Tonclubs Logo"
@@ -128,6 +151,11 @@ export default function Home() {
           />
         </div>
       </LandingStyled>
+
+      <AfterHackathonText>
+        Contributions made after the hackathon deadline (17.03.2023) are in the
+        post-hackathon branch for each repository.
+      </AfterHackathonText>
     </>
   );
 }
