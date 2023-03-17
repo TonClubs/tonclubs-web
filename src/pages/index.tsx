@@ -99,15 +99,15 @@ export default function Home() {
           <h2 className="subtitle purple">with TON Network</h2>
 
           <div className="buttons">
-            <a href="https://t.me/tonclubstestbot" className="button outlined">
+            <a href="https://t.me/tonclubstestbot" target="_blank" rel="noreferrer" className="button outlined">
               Try On Telegram
             </a>
 
-            <a href="" className="button contained">
+            <a href="https://video.tonclubs.com" target="_blank" rel="noreferrer" className="button contained">
               Demo Video
             </a>
 
-            <a href="https://github.com/TonClubs" className="github">
+            <a href="https://github.com/TonClubs" target="_blank" rel="noreferrer" className="github">
               <Image
                 src={"/images/github-icon.png"}
                 alt="Tonclubs Logo"

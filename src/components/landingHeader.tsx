@@ -86,7 +86,7 @@ const LandingHeader = () => {
 
         <div className="content">
           <div className="nav">
-            <Link href={"/"}>What is?</Link>
+            <a href="https://tonclubs.notion.site/" target="_blank" rel="noreferrer">What is?</a>
           </div>
 
           <Link href={"/app"} className="ton-connect-wrapper">
