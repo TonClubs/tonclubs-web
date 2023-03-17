@@ -67,10 +67,10 @@ const Header = () => {
       <div className="wrapper">
         <Link href={"/"} className="logo">
           <Image
-            src={"/images/tonclubs-logo.png"}
+            src={"/images/logo/SVG/tonclubs_logo.svg"}
             alt="Tonclubs Logo"
             width={286}
-            height={39}
+            height={55}
           />
         </Link>
         <div className="nav">

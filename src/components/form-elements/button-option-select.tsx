@@ -95,6 +95,7 @@ const ButtonOptionSelect = (props: ButtonOptionSelectProps) => {
             key={"button-option_" + index}
             className={activeIndex == index ? "active" : ""}
             onClick={() => handleButtonClick(item?.value, index)}
+            type="button"
           >
             {item?.label}
           </button>

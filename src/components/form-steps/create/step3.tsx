@@ -1,6 +1,7 @@
 import ContentContainer from "@/components/containers/form-helper/content-container";
 import SplitContainer from "@/components/containers/form-helper/split-container";
 import TextInput from "@/components/form-elements/text-input";
+import Image from "next/image";
 import styled from "styled-components";
 import { StepPropsType } from "./step.type";
 
@@ -40,6 +41,12 @@ const UploadedImageStyled = styled.div`
     );
   }
 
+  img.uploaded-image {
+    max-width: 120px;
+    width: auto;
+    object-fit: contain;
+  }
+
   .details {
     display: flex;
     flex-direction: column;
@@ -63,10 +70,22 @@ const Step3 = ({ formField, formikHelpers }: StepPropsType) => {
     set_monthly_membership_fee,
     number_nft_amount,
   } = formField;
+
   return (
     <UploadedImageStyled>
       <div className="uploaded-image-wrapper">
-        <div className="uploaded-image">Uploaded Image</div>
+        {formikHelpers.values.membership_image ? (
+          <Image
+            className="uploaded-image"
+            src={URL.createObjectURL(formikHelpers.values.membership_image)}
+            width={107}
+            height={104}
+            alt="preview image"
+          />
+        ) : (
+          <div className="uploaded-image">No Image Selected</div>
+        )}
+
         <div className="details">
           <div className="details-title">TonClub Name:</div>
           <div className="details-value">

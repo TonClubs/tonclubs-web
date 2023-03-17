@@ -53,6 +53,9 @@ const createFormModel = {
       endLabel: "Club Category",
       label: "Select Club Category",
     },
+    membership_image: {
+      name: "membership_image",
+    },
   },
 };
 

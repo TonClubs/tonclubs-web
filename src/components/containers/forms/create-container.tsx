@@ -35,6 +35,13 @@ const CreateContainerStyled = styled.div`
     gap: 60px;
   }
 
+  .content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
   form {
     width: 100%;
     display: flex;
@@ -92,7 +99,7 @@ const CreateContainer = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleFormSubmit = (values: any, actions: any) => {
-    console.log("values", values, "actions", actions);
+    console.log("SUBMIT", "values", values, "actions", actions);
   };
 
   const buttonBackClick = () => {
@@ -102,7 +109,9 @@ const CreateContainer = () => {
   };
 
   const buttonNextClick = () => {
-    setActiveStep(activeStep + 1);
+    if (activeStep < 2) {
+      setActiveStep(activeStep + 1);
+    }
   };
 
   return (
@@ -118,34 +127,53 @@ const CreateContainer = () => {
             validateOnChange={false}
           >
             {({ values, isSubmitting, errors, setFieldValue }) => {
-              console.log("values", values);
               return (
                 <Form id={formId}>
-                  <MemoizedStepContent
-                    step={activeStep}
-                    formikHelpers={{ setFieldValue, values }}
-                  />
+                  <div className="content-wrapper">
+                    <MemoizedStepContent
+                      step={activeStep}
+                      formikHelpers={{ setFieldValue, values }}
+                    />
+                    <div className="bottom-actions">
+                      {3 > activeStep && (
+                        <>
+                          {activeStep > 0 && (
+                            <Button
+                              $mode="form-back"
+                              type="button"
+                              onClick={buttonBackClick}
+                            >
+                              {activeStep === 2 ? "Turn back and edit" : "Back"}
+                            </Button>
+                          )}
+                          {activeStep === 2 ? (
+                            <Button
+                              key="form_submit"
+                              id="form_submit"
+                              $mode="form-next"
+                              type="submit"
+                            >
+                              🥳 Fantastic! Let’s Create It!
+                            </Button>
+                          ) : (
+                            <Button
+                              key="form_next"
+                              id="form_next"
+                              type="button"
+                              $mode="form-next"
+                              onClick={buttonNextClick}
+                            >
+                              Next Step
+                            </Button>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
                 </Form>
               );
             }}
           </Formik>
-        </div>
-
-        <div className="bottom-actions">
-          {3 > activeStep && (
-            <>
-              {activeStep > 0 && (
-                <Button $mode="form-back" onClick={buttonBackClick}>
-                  {activeStep === 2 ? "Turn back and edit" : "Back"}
-                </Button>
-              )}
-              <Button $mode="form-next" onClick={buttonNextClick}>
-                {activeStep === 2
-                  ? "🥳  Fantastic! Let’s Create It!"
-                  : "Next Step"}
-              </Button>
-            </>
-          )}
         </div>
       </CreateContainerStyled>
     </>

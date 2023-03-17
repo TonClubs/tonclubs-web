@@ -1,6 +1,7 @@
 import ContentContainer from "@/components/containers/form-helper/content-container";
 import SplitContainer from "@/components/containers/form-helper/split-container";
 import CheckboxInput from "@/components/form-elements/checkbox-input";
+import ImageInput from "@/components/form-elements/image-input";
 import NumberInput from "@/components/form-elements/number-input";
 import TextInput from "@/components/form-elements/text-input";
 import styled from "styled-components";
@@ -23,13 +24,14 @@ const UserImageUploadStyled = styled.div`
   cursor: pointer;
 `;
 
-const Step1 = ({ formField }: StepPropsType) => {
+const Step1 = ({ formField, formikHelpers }: StepPropsType) => {
   const {
     membership_name,
     number_nft_amount,
     minting_price,
     secondary_sale_fee,
     limit_max_supply,
+    membership_image,
   } = formField;
 
   return (
@@ -62,11 +64,17 @@ const Step1 = ({ formField }: StepPropsType) => {
           />
         </ContentContainer>
         <ContentContainer $leftSpace={16}>
-          <UserImageUploadStyled>
-            Click to <br />
-            Upload an Image <br />
-            For Your Membership
-          </UserImageUploadStyled>
+          <ImageInput
+            formikHelpers={formikHelpers}
+            name={membership_image.name}
+            label={
+              <>
+                Click to <br />
+                Upload an Image <br />
+                For Your Membership
+              </>
+            }
+          />
         </ContentContainer>
       </SplitContainer>
     </>

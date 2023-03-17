@@ -111,7 +111,6 @@ const NumberInput = (props: NumberInputProps) => {
           id={name}
           {...inputProps}
           {...field}
-          defaultValue={0}
           onChange={(elm: React.ChangeEvent<HTMLInputElement>) => {
             const newVal = Number(elm.target.value);
             if (elm.target.value?.length > 1 && !newVal) {

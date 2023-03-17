@@ -13,6 +13,7 @@ const {
     set_monthly_membership_fee,
     club_website,
     club_category,
+    membership_image,
   },
 } = createFormModel;
 
@@ -28,6 +29,7 @@ const createFormValidationSchema = [
     [set_monthly_membership_fee.name]: yup.boolean().required(),
     [club_website.name]: yup.string(),
     [club_category.name]: yup.string(),
+    [membership_image.name]: yup.mixed(),
   }),
 ];
 

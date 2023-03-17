@@ -28,6 +28,7 @@ export type CreateFormType = {
   set_monthly_membership_fee: number;
   club_website: string;
   club_category: string;
+  membership_image: File | null;
 };
 
 const createFormInitialValues: CreateFormType = {
@@ -41,6 +42,7 @@ const createFormInitialValues: CreateFormType = {
   set_monthly_membership_fee: 0,
   club_website: "",
   club_category: "",
+  membership_image: null,
 };
 
 export default createFormInitialValues;
