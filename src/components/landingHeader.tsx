@@ -11,7 +11,15 @@ const HeaderStyled = styled.div`
   .wrapper {
     padding: 16px;
     display: flex;
-    justify-content: space-between;
+    flex: 1;
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 64px;
   }
 
   .logo {
@@ -32,14 +40,15 @@ const HeaderStyled = styled.div`
     a {
       text-decoration: none;
       color: #fff;
-      font-size: 16px;
-      font-weight: 400;
+      font-size: 21px;
+      font-weight: 600;
     }
   }
 
   .ton-connect-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 238px;
     height: 55px;
     border-radius: 27.5px;
@@ -47,6 +56,7 @@ const HeaderStyled = styled.div`
     padding-left: 14px;
     cursor: pointer;
     padding-right: 22px;
+    text-decoration: none;
   }
 
   .ton-connect-text {
@@ -61,37 +71,31 @@ const HeaderStyled = styled.div`
   }
 `;
 
-const Header = () => {
+const LandingHeader = () => {
   return (
     <HeaderStyled>
       <div className="wrapper">
         <Link href={"/app"} className="logo">
           <Image
-            src={"/images/logo/SVG/tonclubs_logo.svg"}
+            src={"/images/tonclubs-logo.png"}
             alt="Tonclubs Logo"
             width={286}
-            height={55}
+            height={39}
           />
         </Link>
-        <div className="nav">
-          <Link href={"/"}>Create</Link>
-          <Link href={"/"}>Manage</Link>
-          <Link href={"/"}>Sell</Link>
-          <Link href={"/"}>Search</Link>
-        </div>
-        <div className="ton-connect-wrapper">
-          <Image
-            className="ton-connect-image"
-            src={"/purple-ton-icon.svg"}
-            width={32}
-            height={32}
-            alt="Ton icon"
-          />
-          <div className="ton-connect-text">Connected</div>
+
+        <div className="content">
+          <div className="nav">
+            <Link href={"/"}>What is?</Link>
+          </div>
+
+          <Link href={"/app"} className="ton-connect-wrapper">
+            <div className="ton-connect-text">Go To App</div>
+          </Link>
         </div>
       </div>
     </HeaderStyled>
   );
 };
 
-export default Header;
+export default LandingHeader;
